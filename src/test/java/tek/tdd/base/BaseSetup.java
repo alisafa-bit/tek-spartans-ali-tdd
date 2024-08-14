@@ -10,12 +10,11 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.time.Duration;
-import java.util.Properties;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
+import java.util.Properties;
 
 public abstract class BaseSetup {
     //Read Config File
@@ -35,7 +34,7 @@ public abstract class BaseSetup {
 
         try{
             LOGGER.debug("Reading Config file from path {}",configFilePath);
-            InputStream inputStream = new FileInputStream(new File(configFilePath));
+            InputStream inputStream = new FileInputStream(configFilePath);
             properties = new Properties();
             properties.load(inputStream);
         }catch (IOException ioException){
