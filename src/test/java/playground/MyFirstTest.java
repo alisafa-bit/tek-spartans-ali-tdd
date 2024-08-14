@@ -16,13 +16,13 @@ public class MyFirstTest {
         System.out.println("Hello world");
     }
 
-    @AfterMethod
-    public void runAfterEachTestMethod(){
-        System.out.println("This is running after each test");
-    }
-
     @Test
     public void mySecondTestMethod(){
         System.out.println("The second test");
+    }
+
+    @AfterMethod
+    public void runAfterEachTestMethod(){
+        System.out.println("This is running after each test");
     }
 }
