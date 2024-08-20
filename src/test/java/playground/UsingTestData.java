@@ -7,7 +7,6 @@ public class UsingTestData {
 
     @Test(dataProvider = "addingData")
     public void testAdding(int firstNumber, int secondNumber, int expectedResult) {
-
         int result = firstNumber + secondNumber;
         Assert.assertEquals(result, expectedResult);
     }
@@ -21,4 +20,5 @@ public class UsingTestData {
         };
         return data;
     }
+
 }

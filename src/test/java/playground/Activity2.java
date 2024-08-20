@@ -26,10 +26,9 @@ public class Activity2 {
     }
 
     @Test(dataProvider = "positiveTestData")
-    public void positiveTesting(String firstName, String lastName, String expectedFullName) {
-        String fullName = getFullName(firstName, lastName);
-
-        Assert.assertEquals(fullName, expectedFullName, "FullName should match format");
+    public void positiveTesting(String firstName, String lastName, String expectedResult) {
+        String fullName = getFullName(firstName,lastName);
+        Assert.assertEquals(fullName,expectedResult, "FullName should match format");
     }
 
     @DataProvider(name = "positiveTestData")
@@ -38,11 +37,19 @@ public class Activity2 {
                 {"mohammad", "shokriyan", "SHOKRIYAN, Mohammad" },
                 {"JoHN", "SMITH", "SMITH, John" },
                 {" ALEN ", " smith ", "SMITH, Alen" },
-
+                {" ali"," safa", "SAFA, Ali" }
         };
         return data;
     }
 
+    public void negativeTestExample(){
+        try {
+            getFullName(null,null);
+            Assert.fail("suppose throw expectation");
+        }catch (RuntimeException ex){
+           Assert.assertTrue(true,"Catch the Exception passing the Test");
+        }
+    }
     @Test
     public void negativeTesting() {
         try {

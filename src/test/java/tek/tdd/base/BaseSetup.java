@@ -25,7 +25,7 @@ public abstract class BaseSetup {
     protected static final long WAIT_TIME_IN_SECOND = 25;
 
     private static WebDriver driver;
-    private Properties properties;
+    private final Properties properties;
 
     public BaseSetup(){
         //Reading config files and loading to properties
@@ -47,8 +47,8 @@ public abstract class BaseSetup {
         String url = properties.getProperty("ui.url");
         String browserType = properties.getProperty("ui.browser");
         Boolean isHeadless = Boolean.parseBoolean(properties.getProperty("ui.browser.headless"));
-        LOGGER.info("Opening on {} browser",browserType);
-        LOGGER.info("Is Headless on {}",isHeadless);
+        LOGGER.info("Opening on {} browser", browserType);
+        LOGGER.info("Is Headless on {}", isHeadless);
 
         switch (browserType.toLowerCase()){
             case "chrome":
@@ -69,7 +69,7 @@ public abstract class BaseSetup {
             default:
                 throw new RuntimeException("Wrong browser type, choose between chrome, firefox and edge.");
         }
-        LOGGER.info("Navigating to URL{}",url);
+        LOGGER.info("Navigating to URL{}", url);
         driver.get(url);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIME_IN_SECOND));
