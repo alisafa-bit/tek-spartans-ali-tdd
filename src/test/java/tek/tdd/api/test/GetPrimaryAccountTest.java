@@ -23,5 +23,16 @@ public class GetPrimaryAccountTest extends ApiTestBase {
 
         Assert.assertEquals(actualEmail, "ShadabAli147@gmail.com");
     }
-    //
+
+    //Sending request to get primary account with Id does not exist
+    //Validate errorMessage
+    @Test
+    public void validateGetAccountNotExist(){
+        Response response = getDefaultRequest()
+                .queryParam("primaryPersonId",252525).when()
+                .get(EndPoints.GET_PRIMARY_ACCOUNT.getValue())
+                .then().statusCode(404).extract().response();
+        String errorMessage = response.body().jsonPath().getString("errorMessage");
+        Assert.assertEquals(errorMessage,"Account with id 252525 not exist");
+    }
 }
