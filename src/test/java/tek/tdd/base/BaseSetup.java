@@ -1,5 +1,6 @@
 package tek.tdd.base;
 
+import io.restassured.RestAssured;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +38,12 @@ public abstract class BaseSetup {
             InputStream inputStream = new FileInputStream(configFilePath);
             properties = new Properties();
             properties.load(inputStream);
+
+            //Get API Base URL and setup RestAssured
+            String baseURL = properties.getProperty("api.url");
+            RestAssured.baseURI = baseURL;
+
+
         }catch (IOException ioException){
             LOGGER.error("Config file error with message {}",ioException.getMessage());
             throw new RuntimeException("Config file error with message {}" + ioException.getMessage());
@@ -69,7 +76,7 @@ public abstract class BaseSetup {
             default:
                 throw new RuntimeException("Wrong browser type, choose between chrome, firefox and edge.");
         }
-        LOGGER.info("Navigating to URL{}", url);
+        LOGGER.info("Navigating to URL{} ", url);
         driver.get(url);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIME_IN_SECOND));
