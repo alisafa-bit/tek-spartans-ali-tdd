@@ -63,7 +63,6 @@ public class TokenGenerationsTests extends ApiTestBase {
         Map<String, String> requestBody = getTokenRequestBody(username, password);
         request.body(requestBody);
 
-
         Response response = request.when().post(EndPoints.TOKEN.getValue());
         response.then().statusCode(statusCode);
 
