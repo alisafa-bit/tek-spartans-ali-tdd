@@ -21,8 +21,7 @@ public class PlanCodeTests extends ApiTestBase {
 
         String token = getDefaultRequest()
                 .body(tokenRequest)
-                .when()
-                .post(EndPoints.TOKEN.getValue())
+                .when().post(EndPoints.TOKEN.getValue())
                 .then().statusCode(200)
                 .extract()
                 .response()
@@ -30,10 +29,8 @@ public class PlanCodeTests extends ApiTestBase {
 
         Response response = getDefaultRequest()
                 .header("Authorization", "Bearer " + token)
-                .when()
-                .get(EndPoints.GET_ALL_PLAN_CODE.getValue())
-                .then()
-                .statusCode(200)
+                .when().get(EndPoints.GET_ALL_PLAN_CODE.getValue())
+                .then().statusCode(200)
                 .extract()
                 .response();
 
@@ -44,5 +41,9 @@ public class PlanCodeTests extends ApiTestBase {
 
         Assert.assertNotNull(planCodes);
         Assert.assertTrue(planCodes.size() == 4);
+
+        for(PlanCodeResponse planCode: planCodes){
+            Assert.assertFalse(planCode.isPlanExpired());
+        }
     }
 }

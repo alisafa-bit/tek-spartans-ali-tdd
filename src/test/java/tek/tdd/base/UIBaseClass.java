@@ -20,7 +20,6 @@ public class UIBaseClass extends SeleniumUtility {
     public HomePage homePage;
     public SignInPage signInPage;
     public SignUpPage signUpPage;
-    public AccountPage accountPage;
     public AccountProfilePage accountProfilePage;
 
     @BeforeMethod
@@ -28,7 +27,6 @@ public class UIBaseClass extends SeleniumUtility {
     LOGGER.info("Setup test and opening browser");
     setupBrowser();
     homePage = new HomePage();
-    accountPage = new AccountPage();
     signInPage = new SignInPage();
     accountProfilePage = new AccountProfilePage();
     signUpPage = new SignUpPage();
@@ -39,14 +37,12 @@ public class UIBaseClass extends SeleniumUtility {
         if(result.getStatus()== ITestResult.FAILURE) {
             TakesScreenshot screenshot = (TakesScreenshot)getDriver();
             String shot = screenshot.getScreenshotAs(OutputType.BASE64);
-
             ExtentTestManager.getTest().fail("Test failed Taking screen shot",
                     MediaEntityBuilder.createScreenCaptureFromBase64String(shot).build());
         }
         LOGGER.info("Running after each test and closing browser");
         quitBrowser();
     }
-
     public void validCredentialSignIn(){
         clickOnElement(homePage.signInLink);
         signInPage.doSignIn("alisafaa@gmail.com","Password@123");

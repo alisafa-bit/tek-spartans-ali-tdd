@@ -12,19 +12,14 @@ public class AccountProfileTest extends UIBaseClass {
     @Test
     public void updatePersonalInfoTest() throws InterruptedException {
         validCredentialSignIn();
-
         clickOnElement(homePage.accountLink);
-
         accountProfilePage.updateNameAndPhone("alisafa" , "1425361425");
-
         boolean isToastDisplayed = isElementDisplayed(homePage.toastBody);
         Assert.assertTrue(isToastDisplayed, "Toast Should display");
-
         String actualUserName = getElementText(accountProfilePage.accountUserNameText);
         Assert.assertEquals(actualUserName, "alisafa");
         Thread.sleep(6000);
         //We are doing reset after this line to name and phone number
-
         accountProfilePage.updateNameAndPhone("arash" , "2023233635");
         Thread.sleep(1000);
         String actualUserNameReset = getElementText(accountProfilePage.accountUserNameText);

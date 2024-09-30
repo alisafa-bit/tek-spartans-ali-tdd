@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class TokenGenerationsTests extends ApiTestBase {
     private static final Logger LOGGER = LogManager.getLogger(TokenGenerationsTests.class);
-
     //Create a test validate token generated with supervisor User
     @Test(dataProvider = "credentials")
     public void generateValidToken(String username, String password) {
@@ -31,8 +30,9 @@ public class TokenGenerationsTests extends ApiTestBase {
         requestSpecification.body(body);
 
         //Send request to /api/token
-        Response response = requestSpecification.when().post(EndPoints.TOKEN.getValue());
-        response.then().statusCode(200);
+        Response response = requestSpecification
+                .when().post(EndPoints.TOKEN.getValue());
+                 response.then().statusCode(200);
 
         //To access data in response body.
         String actualUsername = response.body().jsonPath().getString("username");
@@ -103,7 +103,6 @@ public class TokenGenerationsTests extends ApiTestBase {
                 .response();
 
         ExtentTestManager.getTest().info(response.asPrettyString());
-
         //Convert Response body to POJO
         TokenResponse token = response.body().jsonPath().getObject("", TokenResponse.class);
 

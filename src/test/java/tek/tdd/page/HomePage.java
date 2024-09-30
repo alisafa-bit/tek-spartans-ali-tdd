@@ -1,5 +1,4 @@
 package tek.tdd.page;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +13,4 @@ public class HomePage extends SeleniumUtility {
     @FindBy(id = "signinLink") public WebElement signInLink;
     @FindBy(id = "accountLink") public WebElement accountLink;
     @FindBy(className = "Toastify__toast-body") public WebElement toastBody;
-
-
 }
