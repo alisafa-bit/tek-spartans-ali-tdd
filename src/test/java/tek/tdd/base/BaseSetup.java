@@ -42,14 +42,11 @@ public abstract class BaseSetup {
             //Get API Base URL and setup RestAssured
             String baseURL = properties.getProperty("api.url");
             RestAssured.baseURI = baseURL;
-
-
         }catch (IOException ioException){
             LOGGER.error("Config file error with message {}",ioException.getMessage());
             throw new RuntimeException("Config file error with message {}" + ioException.getMessage());
         }
     }
-
     public void setupBrowser(){
         String url = properties.getProperty("ui.url");
         String browserType = properties.getProperty("ui.browser");
@@ -81,14 +78,12 @@ public abstract class BaseSetup {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIME_IN_SECOND));
     }
-
     public void quitBrowser(){
         if (driver!=null){
             LOGGER.info("Quiting the Browser");
             driver.quit();
         }
     }
-
     public WebDriver getDriver(){
         return driver;
     }
